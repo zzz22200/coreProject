@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {IgxGridComponent} from 'igniteui-angular';
 
 @Component({
   selector: 'app-doctor-info',
@@ -7,9 +8,26 @@ import {Component, OnInit} from '@angular/core';
 })
 export class DoctorInfoComponent implements OnInit {
   localData = data
+  @ViewChild("grid1", { read: IgxGridComponent })
+  public grid1: IgxGridComponent;
 
+
+  public density = "comfortable";
+  public displayDensities;
   title = 'My Ignite UI project';
 
+  public selectDensity(event) {
+    this.density = this.displayDensities[event.index].label;
+    this.grid1.displayDensity = this.displayDensities[event.index].label;
+    this.grid1.reflow();
+  }
+  consoleNow(){
+    console.log(this.displayDensities)
+    // this.localData.forEach(item=>{
+    //   item.filter(res=>res.key)
+    // })
+    console.log(this.grid1.hiddenColumnsCount)
+  }
   constructor() {
   }
 
