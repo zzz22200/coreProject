@@ -1,10 +1,11 @@
 <div class="grid__wrapper">
   <div class="density-chooser">
     <button (click)="consoleNow()">show </button>
+    <button (click)="exportButtonHandler()">Export IgxGrid to Excel</button>
     <igx-buttongroup [values]="displayDensities" (onSelect)="selectDensity($event)"></igx-buttongroup>
   </div>
   <igx-grid #grid1 [data]="localData" [displayDensity]="density" [showToolbar]="true" [columnHiding]="true" [autoGenerate]="true"
-            height="850px" width="1200px" [allowFiltering]="true" [filterMode]="'excelStyleFilter'">
+            height="850px" width="1200px" [allowFiltering]="true" [filterMode]="'excelStyleFilter'" [rowEditable]="true">
     <igx-column field="資料最後更新日" dataType="string"></igx-column>
     <igx-column field="醫生姓名" dataType="string"></igx-column>
     <igx-column field="No." dataType="string"></igx-column>

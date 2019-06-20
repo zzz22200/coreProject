@@ -1,10 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {IgxGridComponent} from 'igniteui-angular';
+import {IgxGridComponent, IgxExcelExporterService, IgxExcelExporterOptions} from 'igniteui-angular';
 
 @Component({
   selector: 'app-doctor-info',
   templateUrl: './doctor-info.component.html',
-  styleUrls: ['./doctor-info.component.scss']
+  styleUrls: ['./doctor-info.component.scss'],
+  providers: [ IgxExcelExporterService ]
 })
 export class DoctorInfoComponent implements OnInit {
   localData = data
@@ -28,7 +29,12 @@ export class DoctorInfoComponent implements OnInit {
     // })
     console.log(this.grid1.hiddenColumnsCount)
   }
-  constructor() {
+  constructor(private excelExportService: IgxExcelExporterService) {
+
+  }
+
+  public exportButtonHandler() {
+    this.excelExportService.export(this.grid1, new IgxExcelExporterOptions("ExportedDataFile"));
   }
 
   ngOnInit() {
